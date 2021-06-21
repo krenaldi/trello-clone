@@ -1,9 +1,21 @@
 import { AppContainer } from './styles'
+import { Column } from './Column'
+import { Card } from './Card'
+import { AddNewItem } from './AddNewItem'
 
 export const App = () => {
   return (
     <AppContainer>
-      Columns go here
+      <Column text="To Do">
+        <Card text="Generate app scaffold" />
+      </Column>
+      <Column text="In Progress">
+        <Card text="Learn TypeScript" />
+      </Column>
+      <Column text="Complete">
+        <Card text="Begin to use static typing" />
+      </Column>
+      <AddNewItem toggleButtonText="+ Add another list" onAdd={console.log} />
     </AppContainer>
   );
 }
