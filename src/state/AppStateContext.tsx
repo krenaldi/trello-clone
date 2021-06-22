@@ -1,4 +1,6 @@
-import { createContext, useContext, useReducer, Dispatch } from 'react'
+import { createContext, useContext, Dispatch } from 'react'
+// import ImmerJS which allows you to mutate an object & create a new object instance based on your mutations
+import { useImmerReducer } from 'use-immer'
 import { appStateReducer, AppState, List, Task } from './appStateReducer'
 import { Action } from './actions'
 
@@ -31,7 +33,7 @@ const appData: AppState = {
 }
 
 export const AppStateProvider: React.FC = ({children}) => {
-    const [state, dispatch] = useReducer(appStateReducer, appData)
+    const [state, dispatch] = useImmerReducer(appStateReducer, appData)
     const { lists } = state
 
     const getTasksByListId = (id: string) => {
