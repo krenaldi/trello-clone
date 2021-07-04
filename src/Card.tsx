@@ -40,11 +40,12 @@ export const Card = ({ text, id, columnId, isPreview }: CardProps) => {
             dispatch(
                 moveTask(draggedItem.id, id, draggedItem.columnId, columnId)
             )
+            dispatch(setDraggedItem({ ...draggedItem, columnId }))
         }
     })
 
     drag(drop(ref))
-    
+
     return (
         <CardContainer
             isHidden={isHidden(draggedItem, "CARD", id, isPreview)}
