@@ -5,7 +5,7 @@ import { AddNewItem } from './AddNewItem'
 import { useAppState } from './state/AppStateContext'
 import { Card } from './Card'
 import { useDrop } from 'react-dnd'
-import { addTask, moveList } from './state/actions'
+import { addTask, moveTask, moveList, setDraggedItem } from './state/actions'
 import { isHidden } from './utils/isHidden'
 
 type ColumnProps = {
@@ -21,7 +21,7 @@ export const Column = ({ text, id, isPreview }: ColumnProps) => {
     const ref = useRef<HTMLDivElement>(null)
 
     const [, drop] = useDrop({
-        accept: "COLUMN",
+        accept: ["COLUMN", "CARD"],
         hover() {
             if (!draggedItem) {
                 return
@@ -31,6 +31,18 @@ export const Column = ({ text, id, isPreview }: ColumnProps) => {
                     return
                 }
                 dispatch(moveList(draggedItem.id, id))
+            } else {
+                if (draggedItem.columnId === id) {
+                    return
+                }
+                if (tasks.length) {
+                    return
+                }
+
+                dispatch(
+                    moveTask(draggedItem.id, null, draggedItem.columnId, id)
+                )
+                dispatch(setDraggedItem({ ...draggedItem, columnId: id }))
             }
         }
     })
