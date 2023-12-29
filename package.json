@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && yarn run start:prod || yarn run start:dev",
-    "start:prod": "node server/dist/index.js",
+    "start:prod": "cd server && yarn run start",
     "start:dev": "concurrently \"cd server && yarn run start\" \"cd client && yarn start\"",
     "install": "cd server && yarn install && cd ../client && yarn install",
     "build": "cd client && yarn run build",
