@@ -11,7 +11,6 @@ const port = process.env.PORT || 4000
 let lists:any[] = [];
 
 app.post("/save", (req, res) => {
-  console.log(req.body)
   lists = req.body.lists
   return res.json({ success: true })
 })

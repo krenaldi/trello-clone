@@ -3,6 +3,26 @@
   "version": "1.0.0",
   "main": "server/dist/index.js",
   "repository": "git@github.com:krenaldi/trello-clone.git",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
+  "resolutions": {
+    "@types/react": "17.0.14",
+    "@types/react-dom": "17.0.14"
+  },
+  "scripts": {
+    "start": "if-env NODE_ENV=production && yarn run start:prod || yarn run start:dev",
+    "start:prod": "node server/dist/index.js",
+    "start:dev": "concurrently \"cd server && yarn run start\" \"cd client && yarn start\"",
+    "install": "cd server && yarn install && cd ../client && yarn install",
+    "build": "cd client && yarn run build",
+    "render-build": "yarn install && yarn run build"
+  },
   "author": "Kris Renaldi <krenaldi@comcast.net>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "if-env": "^1.0.4"
+  }
 }
