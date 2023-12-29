@@ -7,10 +7,6 @@
     "node": "16.x",
     "npm": "8.x"
   },
-  "resolutions": {
-    "@types/react": "17.0.14",
-    "@types/react-dom": "17.0.14"
-  },
   "scripts": {
     "start": "if-env NODE_ENV=production && yarn run start:prod || yarn run start:dev",
     "start:prod": "node server/dist/index.js",
