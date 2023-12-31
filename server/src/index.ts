@@ -12,7 +12,7 @@ const port = process.env.PORT || 4000;
 let lists: any[] = [];
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.use(express.static(path.join(__dirname, "../../client/build")));
 }
 
 app.post("/save", (req, res) => {
@@ -23,7 +23,7 @@ app.post("/save", (req, res) => {
 app.get("/load", (req, res) => res.json({ lists }));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
 });
 
 app.listen(port, () =>
